@@ -1,14 +1,18 @@
 package com.example.calculator_app
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.calculator_app.models.SplashViewModel
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,10 +28,17 @@ import com.example.calculator_app.ui.theme.MediumGray
 import com.example.calculator_app.ui.theme.Orange
 import com.example.calculator_app.ui.theme.neon
 
+private const val TAG = "MainActivity"
 @ExperimentalComposeUiApi
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: SplashViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "onCreate Called")
+
+        splashScreen.setKeepOnScreenCondition{viewModel.isLoading.value}
         setContent {
             Calculator_Theme {
                 val viewModel = viewModel<CalculatorViewModel>()
@@ -253,5 +264,34 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart Called")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume Called")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(TAG, "onRestart Called")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause Called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop Called")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy Called")
     }
 }

@@ -62,9 +62,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     implementation ("androidx.compose.material:material")
     implementation ("androidx.compose.ui:ui-tooling-preview")
-
-   
-
+    implementation ("androidx.core:core-splashscreen:1.0.1")
+    implementation ("com.airbnb.android:lottie:6.3.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
